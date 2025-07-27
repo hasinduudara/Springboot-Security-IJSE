@@ -34,6 +34,7 @@ public class AuthService {
         String token=jwtUtil.generateToken(authDTO.getUsername());
         return  new AuthResponseDTO(token);
     }
+
     public String register(RegisterDTO registerDTO) {
         if(userRepository.findByUsername(
                 registerDTO.getUsername()).isPresent()){

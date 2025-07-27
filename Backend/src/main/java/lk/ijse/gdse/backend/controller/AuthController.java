@@ -22,6 +22,7 @@ public class AuthController {
                 "OK",
                 authService.register(registerDTO)));
     }
+
     @PostMapping("/login")
     public ResponseEntity<ApiResponse> login(
             @RequestBody AuthDTO authDTO) {
@@ -30,4 +31,5 @@ public class AuthController {
                 "OK",
                 authService.authenticate(authDTO)));
     }
+
 }
