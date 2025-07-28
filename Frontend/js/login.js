@@ -19,12 +19,13 @@ document.getElementById('loginForm').addEventListener('submit', async function (
             // Optional: store token in cookie or localStorage
             alert('Login successful!');
 
-            const data = result.data;
+            const token = data.data.accessToken;
+            const role = data.data.role;
 
             // ✅ Role-based redirect
-            if (data.role === 'ADMIN') {
+            if (role === 'ADMIN') {
                 window.location.href = 'admin_dashboard.html';
-            } else if (data.role === 'USER') {
+            } else if (role === 'USER') {
                 window.location.href = 'user_dashboard.html';
             } else {
                 alert('Unknown role');
