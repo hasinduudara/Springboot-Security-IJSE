@@ -14,6 +14,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
+import java.util.List;
 
 @Component
 @RequiredArgsConstructor
@@ -22,10 +23,24 @@ public class JwtAuthFilter extends OncePerRequestFilter {
     private final JwtUtil jwtUtil;
     private final UserDetailsService userDetailsService;
 
+    // ✅ List of endpoints to skip JWT filter
+    private static final List<String> EXCLUDED_URLS = List.of(
+            "/auth/register",
+            "/auth/login"
+    );
+
+    // ✅ Skip filter for public endpoints
+    @Override
+    protected boolean shouldNotFilter(HttpServletRequest request) throws ServletException {
+        return EXCLUDED_URLS.stream()
+                .anyMatch(uri -> request.getServletPath().startsWith(uri));
+    }
+
     @Override
     protected void doFilterInternal(HttpServletRequest request,
                                     HttpServletResponse response,
                                     FilterChain filterChain) throws ServletException, IOException {
+
         final String authHeader = request.getHeader("Authorization");
         String jwtToken = null;
         String username = null;
@@ -59,12 +74,5 @@ public class JwtAuthFilter extends OncePerRequestFilter {
         }
 
         filterChain.doFilter(request, response);
-    }
-
-    // 👇 Skip filtering for public endpoints like /auth/register, /auth/login
-    @Override
-    protected boolean shouldNotFilter(HttpServletRequest request) throws ServletException {
-        String path = request.getServletPath();
-        return path.startsWith("/auth");
     }
 }
