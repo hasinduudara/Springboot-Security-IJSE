@@ -14,7 +14,77 @@
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
           rel="stylesheet"
   />
-  <link rel="stylesheet" href="/Frontend/css/register.css" />
+  <style>
+    body {
+      background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+    }
+    .login-container {
+      background: white;
+      padding: 2rem;
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 400px;
+      margin: 0 auto;
+      animation: fadeIn 0.5s ease-in;
+    }
+    .login-title h2 {
+      color: #333;
+      font-weight: 600;
+    }
+    .form-label {
+      color: #666;
+      font-weight: 500;
+    }
+    .form-control, .form-select {
+      border-radius: 8px;
+      padding: 0.75rem;
+      border: 1px solid #e2e8f0;
+      transition: all 0.3s ease;
+    }
+    .form-control:focus, .form-select:focus {
+      border-color: #4f46e5;
+      box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+    }
+    .btn-primary {
+      background: #4f46e5;
+      border: none;
+      padding: 0.75rem 1.5rem;
+      border-radius: 8px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+    .btn-primary:hover {
+      background: #4338ca;
+      transform: translateY(-2px);
+    }
+    .form-check-input:checked {
+      background-color: #4f46e5;
+      border-color: #4f46e5;
+    }
+    .text-muted {
+      color: #666;
+    }
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    @media (max-width: 576px) {
+      .login-container {
+        padding: 1.5rem;
+      }
+    }
+  </style>
+<!--  <link rel="stylesheet" href="/Frontend/css/register.css" />-->
 </head>
 <body>
 <div class="login-container">
@@ -23,8 +93,8 @@
     <p class="text-muted">Join Spring Security today</p>
   </div>
 
-  <form id="registerForm" action="register" method="POST">
-    <!-- Username -->
+  <form id="registerForm">
+  <!-- Username -->
     <div class="mb-4">
       <label for="username" class="form-label">Username</label>
       <div class="input-group">

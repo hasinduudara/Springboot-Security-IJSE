@@ -16,13 +16,15 @@ document.getElementById('loginForm').addEventListener('submit', async function (
         const data = await response.json();
 
         if (response.ok) {
-            // Optional: store token in cookie or localStorage
             alert('Login successful!');
 
             const token = data.data.accessToken;
             const role = data.data.role;
 
-            // ✅ Role-based redirect
+            // ✅ Store token in a cookie (valid for 1 day)
+            document.cookie = `token=${token}; path=/; max-age=86400; secure`;
+
+            // ✅ Redirect based on role
             if (role === 'ADMIN') {
                 window.location.href = 'admin_dashboard.html';
             } else if (role === 'USER') {
