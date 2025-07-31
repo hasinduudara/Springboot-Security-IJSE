@@ -21,8 +21,8 @@ document.getElementById('loginForm').addEventListener('submit', async function (
             const token = data.data.accessToken;
             const role = data.data.role;
 
-            // ✅ Store token in a cookie (valid for 1 day)
-            document.cookie = `token=${token}; path=/; max-age=86400; secure`;
+            // ✅ Store token in Local Storage
+            localStorage.setItem("token", token);
 
             // ✅ Redirect based on role
             if (role === 'ADMIN') {

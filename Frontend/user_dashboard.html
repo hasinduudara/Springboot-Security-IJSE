@@ -36,6 +36,15 @@
       src="https://kit.fontawesome.com/your-code.js"
       crossorigin="anonymous"
     ></script>
+
+    <script>
+      // Check if token exists
+      const token = localStorage.getItem("token");
+      if (!token) {
+        window.location.href = "login.html";
+      }
+    </script>
+
     <script src="/Frontend/js/logout.js"></script>
   </body>
 </html>
